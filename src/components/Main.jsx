@@ -17,6 +17,9 @@ export class Main extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { contacts } = this.state;
 
+    console.log('prevState.contacts', prevState.contacts);
+    console.log('contacts', contacts);
+
     if (prevState.contacts !== contacts) {
       return;
     }
