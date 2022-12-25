@@ -12,13 +12,15 @@ const regions = [
 export const SearchForm = () => {
   return (
     <SearchFormStyled>
-      <BtnSearch type="submit">
-        <FiSearch size="16px" />
+      <BtnSearch type='submit'>
+        <FiSearch size='16px' />
       </BtnSearch>
-      <Select aria-label="select" name="region" required>
-        <option selected disabled defaultValue="">
+
+      <Select aria-label='select' name='region' required>
+        <option selected disabled defaultValue=''>
           Select a region and press enter
         </option>
+
         {regions &&
           regions.map(({ id, name, value }) => (
             <option key={id} value={value}>

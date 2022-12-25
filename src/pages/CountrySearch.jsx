@@ -11,7 +11,7 @@ export const CountrySearch = () => {
   return (
     <Section>
       <Container>
-        <h2>CountrySearch</h2>
+        <SearchForm />
       </Container>
     </Section>
   );

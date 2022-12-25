@@ -86,7 +86,7 @@ export const GridItem = styled.li`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.color};
+  background-color: ${({ color }) => color};
 
   border: 4px solid ${({ color }) => color ?? '#fff'};
   border-radius: ${({ theme }) => theme.spacing(4)};
