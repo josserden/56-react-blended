@@ -1,14 +1,38 @@
-import { useState } from 'react';
+import { useQuery } from 'react-query';
 import { Heading } from '@chakra-ui/react';
+import { fetchUsers } from './utils/api.js';
 
-const BASE_URL = 'https://6251bfb67f7fa1b1ddde85d8.mockapi.io/api';
-const API_URL = `${BASE_URL}/users`;
 const App = () => {
+  const {
+    data: contacts = [],
+    isError,
+    isLoading,
+  } = useQuery('contacts', fetchUsers);
+
+  if (isLoading) {
+    return <Heading>Loading...</Heading>;
+  }
+
+  if (isError) {
+    return <Heading>Error...</Heading>;
+  }
+
+  console.log(contacts);
+
   return (
-    <Heading as="h1" size="4xl" noOfLines={1}>
-      (4xl) In love with React & Next
-    </Heading>
+    <div>
+      <ul>
+        {contacts.map(contact => (
+          <li key={contact.id}>{contact.name}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
 export default App;
+
+// Наш додаток виглядає так:
+// є метод fetchUsers, який викликається при монтуванні компонента - він викликає API і отримує дані про користувачів (метод GET)
+// є метод createUser, який викликається при натисканні на кнопку - він викликає API і створює нового користувача (метод POST)
+// є метод deleteUser, який викликається при натисканні на кнопку - він викликає API і видаляє користувача (метод DELETE)
