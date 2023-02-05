@@ -11,6 +11,22 @@ export const fetchUsers = async () => {
   return response.json();
 };
 
+export const addUser = async user => {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!response.ok) {
+    throw new Error('Something went wrong!');
+  }
+
+  return response.json();
+};
+
 export const removeUser = async id => {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'DELETE',

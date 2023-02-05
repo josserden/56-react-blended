@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { Heading, Container, Box } from '@chakra-ui/react';
 import { fetchUsers } from './utils/api.js';
 import Contacts from './components/Contacts';
+import Header from './components/Header';
 
 const App = () => {
   const {
@@ -19,11 +20,15 @@ const App = () => {
   }
 
   return (
-    <Box as="section" py="60px">
-      <Container maxW="1280px">
-        <Contacts contacts={contacts} />
-      </Container>
-    </Box>
+    <>
+      <Header />
+
+      <Box as="section" py="60px">
+        <Container maxW="1280px">
+          <Contacts contacts={contacts} />
+        </Container>
+      </Box>
+    </>
   );
 };
 
