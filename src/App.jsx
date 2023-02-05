@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Container, Box } from '@chakra-ui/react';
 import { fetchUsers } from './utils/api.js';
+import Contacts from './components/Contacts';
 
 const App = () => {
   const {
@@ -17,16 +18,12 @@ const App = () => {
     return <Heading>Error...</Heading>;
   }
 
-  console.log(contacts);
-
   return (
-    <div>
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>{contact.name}</li>
-        ))}
-      </ul>
-    </div>
+    <Box as="section" py="60px">
+      <Container maxW="1280px">
+        <Contacts contacts={contacts} />
+      </Container>
+    </Box>
   );
 };
 
