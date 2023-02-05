@@ -1,4 +1,7 @@
 import React from 'react';
+import { useMutation, useQueryClient } from 'react-query';
+import { formatDate } from '../../utils/formatDate.js';
+
 import {
   Button,
   Card,
@@ -8,12 +11,19 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
-import contacts from '../Contacts/index.js';
-import { formatDate } from '../../utils/formatDate.js';
+import { removeUser } from '../../utils/api.js';
 
 const ContactCard = ({ id, name, number, createdAt, email }) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(removeUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('contacts');
+    },
+  });
+
   return (
-    <Card id={id}>
+    <Card id={id} as="li">
       <CardHeader>
         <Heading size="md"> {name}</Heading>
       </CardHeader>
@@ -38,7 +48,9 @@ const ContactCard = ({ id, name, number, createdAt, email }) => {
         <Button
           colorScheme="teal"
           type="button"
-          onClick={() => console.log(id)}
+          onClick={() => {
+            mutation.mutate(id);
+          }}
         >
           Delete contact
         </Button>

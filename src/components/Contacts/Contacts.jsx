@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid } from '@chakra-ui/react';
 import ContactCard from '../ContactCard/index.js';
 
 const Contacts = ({ contacts }) => {

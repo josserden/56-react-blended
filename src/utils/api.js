@@ -10,3 +10,15 @@ export const fetchUsers = async () => {
 
   return response.json();
 };
+
+export const removeUser = async id => {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Something went wrong!');
+  }
+
+  return response.json();
+};
